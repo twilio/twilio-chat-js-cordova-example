@@ -1,0 +1,42 @@
+{
+    "name": "com.twilio.rtd.chat.js.cordova",
+    "displayName": "TwilioChatJsCordova",
+    "version": "1.0.0",
+    "description": "A sample Apache Cordova application using Twilio Programmable Chat.",
+    "main": "index.js",
+    "scripts": {
+        "tokenProvider": "node app.js"
+    },
+    "author": "Twilio, inc",
+    "license": "MIT",
+    "dependencies": {
+        "cordova-android": "^6.2.3",
+        "cordova-ios": "^4.4.0",
+        "cordova-plugin-console": "^1.0.7",
+        "cordova-plugin-dialog": "0.0.1",
+        "cordova-plugin-twilio-chat": "0.0.1",
+        "cordova-plugin-twilio-common": "0.0.1",
+        "cordova-plugin-whitelist": "^1.3.2",
+        "phonegap-plugin-push": "^2.0.0"
+    },
+    "cordova": {
+        "plugins": {
+            "cordova-plugin-whitelist": {},
+            "cordova-plugin-twilio-chat": {},
+            "cordova-plugin-twilio-common": {},
+            "phonegap-plugin-push": {},
+            "cordova-plugin-console": {}
+        },
+        "platforms": [
+            "android",
+            "ios"
+        ]
+    },
+    "devDependencies": {
+        "body-parser": "^1.18.1",
+        "cors": "^2.8.4",
+        "express": "^4.15.4",
+        "ngrok": "^2.2.22",
+        "twilio": "^3.6.6"
+    }
+}

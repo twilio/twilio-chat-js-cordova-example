@@ -1,0 +1,12 @@
+{
+  "tokenGenerator": {
+    "accountSid": "ACxxx",
+    "signingKeySid": "SKxxx",
+    "signingKeySecret": "xxx",
+    "serviceSid": "ISxxx",
+    "fcm": "CRxxx",
+    "apn": "CRxxx"
+  },
+  "ngrokSubdomain": "somengroksubdomain"
+}
+

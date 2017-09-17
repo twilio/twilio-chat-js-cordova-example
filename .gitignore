@@ -1,0 +1,12 @@
+node_modules
+*.swp
+*.swo
+.idea
+configuration*json
+!configuration.example.json
+package-lock.json
+certificates/
+google-services.json
+platforms/
+plugins/
+
