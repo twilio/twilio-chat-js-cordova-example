@@ -37,8 +37,8 @@ Configuration for token provider is stored in the `configuration.json` file. The
 Token provider runs on port `3002` on `localhost` and is exposed to the internet with `ngrok` help.
 
 Token provider has multiple exposed endpoints:
- * http://localhost:3002/token (and `http://<yourngroksubdomain>.ngrok.io/token`) token generator GET endpoint, takes in query parameters `identity` and `pushChannel` (`fcm` or `apns`)
- * http://localhost:3002/configuration (and `http://<yourngroksubdomain>.ngrok.io/configuration`) exposes full `configuration.json` for debugging the app
+ * http://localhost:3002/token (and `https://<yourngroksubdomain>.ngrok.io/token`) token generator GET endpoint, takes in query parameters `identity` and `pushChannel` (`fcm` or `apns`)
+ * http://localhost:3002/configuration (and `https://<yourngroksubdomain>.ngrok.io/configuration`) exposes full `configuration.json` for debugging the app
 
 Additionally, ngrok exposes it's own status and inspect endpoint at http://localhost:4040
 
@@ -86,9 +86,10 @@ recursively copy `www` folder from this repository to your project
 4. try to build your iOS project with `cordova build iOS`
 
 ## Running the app
-1. start the Token Provider with `npm run tokenProvicer` and remember the ngrok url printed in the console.
-2. launch the app on Android (`cordova run android`) or iOS (through XCode or with `cordova run ios`)
-3. in the login view of the app enter username and token provider host (the ngrok url you've remembered earlier) and press Login button
+1. do the `npm install` to install all necessary packages
+2. start the Token Provider with `npm run tokenProvicer` and remember the ngrok url printed in the console.
+3. launch the app on Android (`cordova run android`) or iOS (through XCode or with `cordova run ios`)
+4. in the login view of the app enter username and token provider host (the ngrok url you've remembered earlier) and press Login button
 
 ## TODO
 * PushNotification Cordova plugin blocking main thread on iOS for some reason
