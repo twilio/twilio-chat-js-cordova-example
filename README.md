@@ -14,7 +14,7 @@ For getting push registration id on the iOS/Android device this example uses [ph
 
 Keep in mind, that to send pushes you have to turn on the push features for your service instance via [Twilio Console](https://www.twilio.com/console/chat) 
 
-## Token provider and Chat configuration
+## Token provider
 Token is provided by locally running [express.js app](app.js). The app uses ngrok to expose the token provider to the internet - be careful with exposing your actual credentials and secrets to the internet.
 
 Configuration for token provider is stored in the `configuration.json` file. The example with correct structure can be learned from [configuration.example.json](configuration.example.json):
