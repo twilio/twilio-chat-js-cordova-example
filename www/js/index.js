@@ -2,12 +2,11 @@
 
 var app = {
   registeredPushChannel: 'none',
+  logElement: null,
 
   // Application Constructor
   initialize: function() {
     this.bindEvents();
-    var loginElement = document.getElementById('login');
-    loginElement.setAttribute('style', 'display:none');
   },
 
   bindEvents: function() {
@@ -15,10 +14,8 @@ var app = {
   },
 
   onDeviceReady: function() {
+    console.log('Received Device Ready Event');
     Log.initialize(app.displayLogLine);
-    Log.event('app', 'deviceready');
-    var loginElement = document.getElementById('login');
-    loginElement.setAttribute('style', 'display:block');
   },
 
   processLogin: function() {
@@ -28,10 +25,8 @@ var app = {
     if (username && tokenProviderHost) {
       var loginElement = document.getElementById('login');
       loginElement.setAttribute('style', 'display:none');
-
-      var logElement = document.getElementById('log');
-      logElement.setAttribute('style', 'display:block;');
-
+      app.logElement = document.getElementById('log');
+      app.logElement.setAttribute('style', 'display:block;');
       app.initializeChatClient(username, tokenProviderHost, pushChannel);
     } else {
       alert('Please provide username and token provider host');
@@ -39,9 +34,8 @@ var app = {
   },
 
   displayLogLine: function(logLine) {
-    var logElement = document.getElementById('log');
-    logElement.prepend(document.createElement('br'));
-    logElement.prepend(document.createTextNode(logLine));
+    app.logElement.prepend(document.createElement('br'));
+    app.logElement.prepend(document.createTextNode(logLine));
   },
 
   initializeChatClient: function(identity, host, pushChannel) {
