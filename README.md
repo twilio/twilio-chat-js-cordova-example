@@ -90,6 +90,7 @@ recursively copy `www` folder from this repository to your project
 2. start the Token Provider with `npm run tokenProvicer` and remember the ngrok url printed in the console.
 3. launch the app on Android (`cordova run android`) or iOS (through XCode or with `cordova run ios`)
 4. in the login view of the app enter username and token provider host (the ngrok url you've remembered earlier) and press Login button
+5. _for iOS see the TODO section_
 
 ## TODO
-* PushNotification Cordova plugin blocking main thread on iOS for some reason
+* PushNotification Cordova plugin blocking main thread on iOS for some reason (exact same issue is described here: https://github.com/phonegap/phonegap-plugin-push/issues/1896) resulting in not getting device registration id (and, hence, non-working pushes in iOS). The workaround is to do double-home-press on the device, so the app would go to background and back - then device token is fetched and all is working as it supposed to.
