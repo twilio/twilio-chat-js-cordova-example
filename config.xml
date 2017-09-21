@@ -28,7 +28,7 @@
     <engine name="android" spec="^6.2.3" />
     <engine name="ios" spec="^4.4.0" />
     <plugin name="cordova-plugin-console" spec="^1.0.7" />
-    <plugin name="cordova-plugin-twilio-chat" spec="^1.1.2" />
+    <plugin name="cordova-plugin-twilio-chat" spec="^1.2.0" />
     <plugin name="cordova-plugin-twilio-common" spec="^0.1.7" />
     <plugin name="cordova-plugin-whitelist" spec="^1.3.2" />
     <plugin name="phonegap-plugin-push" spec="^2.0.0" />
