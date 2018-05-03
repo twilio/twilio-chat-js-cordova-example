@@ -54,7 +54,7 @@ This repository project was made with this command: `cordova create twilio-chat-
 cordova plugin add cordova-plugin-twilio-chat
 cordova plugin add cordova-plugin-twilio-common
 cordova plugin add phonegap-plugin-push
-cordova plugin add cordova-plugin-console
+cordova plugin add cordova-plugin-whitelist
 ```  
         
 ### Local Token Provider setup
@@ -87,7 +87,7 @@ recursively copy `www` folder from this repository to your project
 
 ## Running the app
 1. do the `npm install` to install all necessary packages
-2. start the Token Provider with `npm run tokenProvicer` and remember the ngrok url printed in the console.
+2. start the Token Provider with `npm run tokenProvider` and remember the ngrok url printed in the console.
 3. launch the app on Android (`cordova run android`) or iOS (through XCode or with `cordova run ios`)
 4. in the login view of the app enter username and token provider host (the ngrok url you've remembered earlier) and press Login button
 5. _for iOS see the TODO section_
