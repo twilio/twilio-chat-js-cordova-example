@@ -4,13 +4,11 @@ const ChatClientHelper = {
   host: null,
   log: null,
   client: null,
-  accessManager: null,
 
   initialize: function(tokenAndConfigurationProviderHost, log) {
     ChatClientHelper.host = tokenAndConfigurationProviderHost;
     ChatClientHelper.log = log;
     ChatClientHelper.client = null;
-    ChatClientHelper.accessManager = null;
   },
 
   login: function(identity, pushChannel, registerForPushCallback, showPushCallback) {
@@ -19,15 +17,11 @@ const ChatClientHelper = {
         ChatClientHelper.log.info('ChatClientHelper', 'got chat token', token);
         return TwilioChat.Client.create(token, { 'logLevel': 'info' }).then(function(chatClient) {
           ChatClientHelper.client = chatClient;
-          ChatClientHelper.accessManager = new TwilioCommon.AccessManager(token);
-          ChatClientHelper.accessManager.on('tokenUpdated', function(am) {
-            return ChatClientHelper.client.updateToken(am.token);
-          });
-          ChatClientHelper.accessManager.on('tokenExpired', function() {
+          ChatClientHelper.client.on('tokenAboutToExpire', function() {
             return ChatClientHelper.getToken(identity, pushChannel)
               .then(function(newData) {
-                  return ChatClientHelper.accessManager.updateToken(newData)
-                }
+                      return ChatClientHelper.updateToken(newData)
+                    }
               )
           });
           ChatClientHelper.client.on('pushNotification', function(obj) {
@@ -35,7 +29,6 @@ const ChatClientHelper = {
               showPushCallback(ChatClientHelper.log, obj);
             }
           });
-          ChatClientHelper.subscribeToAllAccessManagerEvents();
           ChatClientHelper.subscribeToAllChatClientEvents();
           if (registerForPushCallback) {
             registerForPushCallback(ChatClientHelper.log, ChatClientHelper.client);
@@ -55,17 +48,6 @@ const ChatClientHelper = {
       .then(function(response) {
         return response.text();
       });
-  },
-
-  subscribeToAllAccessManagerEvents: function() {
-    ChatClientHelper.accessManager.on('tokenUpdated', function(obj) {
-        ChatClientHelper.log.event('ChatClientHelper.accessManager', 'tokenUpdated', obj)
-      }
-    );
-    ChatClientHelper.accessManager.on('tokenExpired', function(obj) {
-        ChatClientHelper.log.event('ChatClientHelper.accessManager', 'tokenExpired', obj)
-      }
-    );
   },
 
   subscribeToAllChatClientEvents: function() {
