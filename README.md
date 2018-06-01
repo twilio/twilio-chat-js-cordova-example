@@ -51,10 +51,9 @@ This repository project was made with this command: `cordova create twilio-chat-
 
 ### Add necessary Cordova plugins to the project:
 ```
-cordova plugin add cordova-plugin-twilio-chat
-cordova plugin add cordova-plugin-twilio-common
-cordova plugin add phonegap-plugin-push
-cordova plugin add cordova-plugin-whitelist
+cordova plugin add cordova-plugin-twilio-chat --save
+cordova plugin add phonegap-plugin-push --save
+cordova plugin add cordova-plugin-whitelist --save
 ```  
         
 ### Local Token Provider setup
