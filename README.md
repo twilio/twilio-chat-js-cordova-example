@@ -77,12 +77,12 @@ recursively copy `www` folder from this repository to your project
 4. try to build your Android project with `cordova build android`
 
 ### iOS setup 
-1. add iOS platform to your project: `cordova platform add iOS`
+1. add iOS platform to your project: `cordova platform add ios`
 2. do the `pod install` inside `platform/ios/` folder 
 3. open `<your-project-name>.xcworkspace` file with XCode:
   * add signing profile (we recommend to use automatic signing) to your project
   * enable Push in Capabilities section
-4. try to build your iOS project with `cordova build iOS`
+4. try to build your iOS project with `cordova build ios`
 
 ## Running the app
 1. do the `npm install` to install all necessary packages
