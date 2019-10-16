@@ -18,6 +18,7 @@ const ChatClientHelper = {
         return TwilioChat.Client.create(token, { 'logLevel': 'info' }).then(function(chatClient) {
           ChatClientHelper.client = chatClient;
           ChatClientHelper.client.on('tokenAboutToExpire', function() {
+            ChatClientHelper.log.event('ChatClientHelper', 'tokenAboutToExpire');
             return ChatClientHelper.getToken(identity, pushChannel)
               .then(function(newData) {
                       return ChatClientHelper.updateToken(newData)
