@@ -24,6 +24,9 @@ const ChatClientHelper = {
                     }
               )
           });
+          ChatClientHelper.client.on('tokenExpired', function() {
+              ChatClientHelper.login(identity, pushChannel, registerForPushCallback, showPushCallback);
+          });
           ChatClientHelper.client.on('pushNotification', function(obj) {
             if (obj && showPushCallback) {
               showPushCallback(ChatClientHelper.log, obj);
