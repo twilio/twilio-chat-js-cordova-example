@@ -20,8 +20,8 @@ const ChatClientHelper = {
           ChatClientHelper.client.on('tokenAboutToExpire', function() {
             ChatClientHelper.log.event('ChatClientHelper', 'tokenAboutToExpire');
             return ChatClientHelper.getToken(identity, pushChannel)
-              .then(function(newData) {
-                      return ChatClientHelper.updateToken(newData)
+              .then(function(newToken) {
+                      return ChatClientHelper.updateToken(newToken)
                     }
               )
           });
