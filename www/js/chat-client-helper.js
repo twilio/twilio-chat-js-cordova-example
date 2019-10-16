@@ -122,6 +122,10 @@ const ChatClientHelper = {
         ChatClientHelper.log.event('ChatClientHelper.client', 'typingEnded', obj)
       }
     );
+    ChatClientHelper.client.on('connectionError', function(obj) {
+        ChatClientHelper.log.event('ChatClientHelper.client', 'connectionError', obj)
+      }
+    );
     ChatClientHelper.client.on('connectionStateChanged', function(obj) {
         ChatClientHelper.log.event('ChatClientHelper.client', 'connectionStateChanged', obj)
       }
