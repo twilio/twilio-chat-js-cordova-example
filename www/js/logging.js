@@ -8,23 +8,31 @@ const Log = {
     Log.callback = callback;
   },
 
+  onlyDefined: function(obj) {
+    if (typeof obj !== 'undefined') {
+      return JSON.stringify(obj);
+    } else {
+      return '';
+    }
+  },
+
   event: function(eventScope, eventName, obj) {
-    console.log(new Date() + ' [' + eventScope + '] [EVENT ' + eventName + ']', obj);
-    Log.callback('[' + eventScope + ' ] [EVENT ' + eventName + ']')
+    console.log('[' + eventScope + '] [EVENT ' + eventName + ']', Log.onlyDefined(obj));
+    Log.callback(new Date().toISOString() + ' [' + eventScope + '] [EVENT ' + eventName + '] ' + Log.onlyDefined(obj))
   },
 
   info: function(eventScope, text, obj) {
-    console.log(new Date() + ' [' + eventScope + '] [INFO] ' + text, obj);
-    Log.callback('[' + eventScope + '] [INFO] ' + text)
+    console.log('[' + eventScope + '] [INFO] ' + text, Log.onlyDefined(obj));
+    Log.callback(new Date().toISOString() + ' [' + eventScope + '] [INFO] ' + text + ' ' + Log.onlyDefined(obj))
   },
 
   error: function(eventScope, text, obj) {
-    console.error(new Date() + ' [' + eventScope + '] [ERROR] ' + text, obj);
-    Log.callback('[' + eventScope + '] [ERROR] ' + text)
+    console.error('[' + eventScope + '] [ERROR] ' + text, Log.onlyDefined(obj));
+    Log.callback(new Date().toISOString() + ' [' + eventScope + '] [ERROR] ' + text + ' ' + Log.onlyDefined(obj))
   },
 
   warn: function(eventScope, text, obj) {
-    console.warn(new Date() + ' [' + eventScope + '] [WARN] ' + text, obj);
-    Log.callback('[' + eventScope + '] [WARN] ' + text)
+    console.warn('[' + eventScope + '] [WARN] ' + text, Log.onlyDefined(obj));
+    Log.callback(new Date().toISOString() + ' [' + eventScope + '] [WARN] ' + text + ' ' + Log.onlyDefined(obj))
   }
 };
