@@ -14,7 +14,6 @@ const ChatClientHelper = {
   login: function(identity, pushChannel, registerForPushCallback, showPushCallback) {
     return ChatClientHelper.getToken(identity, pushChannel)
       .then(function(token) {
-        ChatClientHelper.log.info('ChatClientHelper', 'got chat token', token);
         return TwilioChat.Client.create(token, { 'logLevel': 'info' }).then(function(chatClient) {
           ChatClientHelper.client = chatClient;
           ChatClientHelper.client.on('tokenAboutToExpire', function() {
@@ -51,7 +50,10 @@ const ChatClientHelper = {
     return fetch(ChatClientHelper.host + '/token?identity=' + identity + '&pushChannel=' + pushChannel)
       .then(function(response) {
         return response.text();
-      });
+    }).then(function(token) {
+        ChatClientHelper.log.info('ChatClientHelper', 'got chat token', token);
+        return token;
+    });
   },
 
   subscribeToAllChatClientEvents: function() {
