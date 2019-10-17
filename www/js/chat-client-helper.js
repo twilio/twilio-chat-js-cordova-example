@@ -14,15 +14,18 @@ const ChatClientHelper = {
   login: function(identity, pushChannel, registerForPushCallback, showPushCallback) {
     return ChatClientHelper.getToken(identity, pushChannel)
       .then(function(token) {
-        ChatClientHelper.log.info('ChatClientHelper', 'got chat token', token);
         return TwilioChat.Client.create(token, { 'logLevel': 'info' }).then(function(chatClient) {
           ChatClientHelper.client = chatClient;
           ChatClientHelper.client.on('tokenAboutToExpire', function() {
+            ChatClientHelper.log.event('ChatClientHelper', 'tokenAboutToExpire');
             return ChatClientHelper.getToken(identity, pushChannel)
-              .then(function(newData) {
-                      return ChatClientHelper.updateToken(newData)
+              .then(function(newToken) {
+                      return ChatClientHelper.updateToken(newToken)
                     }
               )
+          });
+          ChatClientHelper.client.on('tokenExpired', function() {
+              ChatClientHelper.login(identity, pushChannel, registerForPushCallback, showPushCallback);
           });
           ChatClientHelper.client.on('pushNotification', function(obj) {
             if (obj && showPushCallback) {
@@ -47,7 +50,10 @@ const ChatClientHelper = {
     return fetch(ChatClientHelper.host + '/token?identity=' + identity + '&pushChannel=' + pushChannel)
       .then(function(response) {
         return response.text();
-      });
+    }).then(function(token) {
+        ChatClientHelper.log.info('ChatClientHelper', 'got chat token', token);
+        return token;
+    });
   },
 
   subscribeToAllChatClientEvents: function() {
@@ -117,6 +123,10 @@ const ChatClientHelper = {
     );
     ChatClientHelper.client.on('typingEnded', function(obj) {
         ChatClientHelper.log.event('ChatClientHelper.client', 'typingEnded', obj)
+      }
+    );
+    ChatClientHelper.client.on('connectionError', function(obj) {
+        ChatClientHelper.log.event('ChatClientHelper.client', 'connectionError', obj)
       }
     );
     ChatClientHelper.client.on('connectionStateChanged', function(obj) {
