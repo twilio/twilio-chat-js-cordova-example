@@ -1,5 +1,5 @@
 # twilio-chat-js-cordova-example
-This repository contains an example Cordova app with Twilio Programmable Chat client usage.
+This repository contains example Cordova app with Twilio Programmable Chat client usage.
 App is running on both iOS and Android (full functionality with FCM and APN pushes including).
 
 ## Chat functionality
